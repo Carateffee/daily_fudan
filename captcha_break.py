@@ -56,7 +56,6 @@ class DailyFDCaptcha:
         img = getCaptchaData(self.zlapp)
         result = base64_api(self.uname,self.pwd,img,self.typeid)
         print(result)
-        logging.info("验证码识别结果为： %s" % result['success'])
         if result['success']:
             self.id = result["data"]["id"]
             return result["data"]["result"]
