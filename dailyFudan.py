@@ -246,12 +246,18 @@ gl_info = "快去手动填写！"
 if __name__ == '__main__':
     uid, psw, IYUU_TOKE = get_account()
     if IYUU_TOKE: #有token则通知，无token不通知
-        if len(IYUU_TOKE) != 3:
+        if len(IYUU_TOKE) == 3:
+            uname = IYUU_TOKE[1]
+            pwd = IYUU_TOKE[2]
+            IYUU_TOKE = IYUU_TOKE[0]
+        elif len(IYUU_TOKE) == 2:
+            uname = IYUU_TOKE[0]
+            pwd = IYUU_TOKE[1]
+            IYUU_TOKE = " "
+        else:
             logging.error("请正确配置微信通知功能和验证码打码功能～\n")
             sys_exit(1)
-        uname = IYUU_TOKE[1]
-        pwd = IYUU_TOKE[2]
-        IYUU_TOKE = IYUU_TOKE[0]
+        
         if IYUU_TOKE.startswith('IYUU'):
             iy_info = iyuu(IYUU_TOKE)
         else:
