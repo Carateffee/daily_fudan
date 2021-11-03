@@ -221,6 +221,7 @@ class Zlapp(Fudan):
                 'sfzx': 1,
                 'code': captcha_text
             })
+            logging.info(captcha.reportError())
             save = self.session.post(
                     'https://zlapp.fudan.edu.cn/ncov/wap/fudan/save',
                     data=self.last_info,
